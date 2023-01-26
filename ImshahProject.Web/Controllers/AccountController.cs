@@ -162,13 +162,13 @@ namespace ImshahProject.Web.Controllers
 
 
         [HttpGet]
-   
+        [Authorize(Roles = SD.Role_Admin)]
         public IActionResult RegisterCustomer() => View(new RegisterCustomerVM());
 
         //POST: Acount/RegisterCustomer
         [HttpPost]
         [ValidateAntiForgeryToken]
-  
+        [Authorize(Roles = SD.Role_Admin)]
         public async Task<IActionResult> RegisterCustomer(RegisterCustomerVM registerVM)
         {
             if (!ModelState.IsValid) return View(registerVM);
