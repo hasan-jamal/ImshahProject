@@ -1,0 +1,128 @@
+﻿@model InformationVM
+@{
+    ViewBag.Title = "Upsert Informations";
+    Layout = "~/Views/Shared/_dashboard.cshtml";
+}
+
+<form method="post" class="mb-5" asp-action="Upsert" enctype="multipart/form-data">
+    <input asp-for="Information.Id" hidden />
+
+    <div class="border p-3 mt-4 row">
+        <div class="row pb-2">
+            <h2 class="text-primary"> @(Model.Information.Id != 0 ? "Update" : "Create") Information</h2>
+            <hr />
+        </div>
+        @*<div asp-validation-summary="All"></div>*@
+        <div class="col-lg-6">
+
+            <div class="mb-3">
+                <label asp-for="Information.Email"></label>
+                <input asp-for="Information.Email" class="form-control" />
+                <span asp-validation-for="Information.Email" class="text-danger"></span>
+            </div>
+             <div class="mb-3">
+                <label asp-for="Information.FindUs"></label>
+                <input asp-for="Information.FindUs" class="form-control" />
+                <span asp-validation-for="Information.FindUs" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Information.Facebook"></label>
+                <input asp-for="Information.Facebook" class="form-control" />
+                <span asp-validation-for="Information.Facebook" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Information.GetAquote"></label>
+                <input asp-for="Information.GetAquote" class="form-control" />
+                <span asp-validation-for="Information.GetAquote" class="text-danger"></span>
+            </div>   
+            <div class="mb-3">
+                <label asp-for="Information.Workinghours"></label>
+                <input asp-for="Information.Workinghours" class="form-control" />
+                <span asp-validation-for="Information.Workinghours" class="text-danger"></span>
+            </div>
+        </div>
+       <div class="col-lg-6">
+
+            <div class="mb-3">
+                <label asp-for="Information.Phone"></label>
+                <input asp-for="Information.Phone" class="form-control" />
+                <span asp-validation-for="Information.Phone" class="text-danger"></span>
+            </div>
+             <div class="mb-3">
+                <label asp-for="Information.FindUs_ar"></label>
+                <input asp-for="Information.FindUs_ar" class="form-control" />
+                <span asp-validation-for="Information.FindUs_ar" class="text-danger"></span>
+            </div>
+               <div class="mb-3">
+                <label asp-for="Information.Twiter"></label>
+                <input asp-for="Information.Twiter" class="form-control" />
+                <span asp-validation-for="Information.Twiter" class="text-danger"></span>
+            </div>
+              <div class="mb-3">
+                <label asp-for="Information.GetAquote_ar"></label>
+                <input asp-for="Information.GetAquote_ar" class="form-control" />
+                <span asp-validation-for="Information.GetAquote_ar" class="text-danger"></span>
+            </div>
+        </div>
+     
+        <div class="col-lg-12">
+            @if (Model.Information.Id != 0)
+            {
+                <button type="submit" class="btn-primary btn" style="width:150px">Update</button>
+            }
+            else
+            {
+                <button type="submit" onclick="return ValidateInput()" class="btn-primary btn" style="width:150px">Create</button>
+            }
+            <a class="btn btn-secondary"  asp-controller="Information" asp-action="Index">Back To List</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+    <partial name="_ValidationScriptsPartial.cshtml" />
+    }
+<script>
+    function ValidateInput(){
+        if(document.getElementById("img-upload").value == ""){
+              Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Please Upload Image !',
+            })
+           return false;
+        }
+        return true;
+    }
+</script>
+<script>
+   tinymce.init({
+      selector: 'textarea',
+      plugins: 'advlist autolink lists link image charmap preview anchor pagebreak',
+      toolbar_mode: 'floating',
+    });
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          $('#image-preview').attr('src', e.target.result);
+          $('#image-preview').hide();
+          $('#image-preview').fadeIn(650);
+        }
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    $("#file-input").change(function() {
+      readURL(this);
+    });
+
+  
+
+</script>
+
+}

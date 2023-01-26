@@ -1,0 +1,472 @@
+﻿@model TablesVM
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<a href="#contact" class="js-anchor-link btn-con">Contact Us</a>
+<!-- Header -->
+<div class="navik-header header-shadow">
+
+    <div class="style-language">
+        <div class="container d-flex align-items-center justify-content-end">
+            <div class="d-flex align-items-center mx-1">
+                <img src="~/images/english.png" alt="english" width="20" class="mx-1">
+                <a asp-controller="Home" asp-action="Index">EN</a>
+            </div>
+            <a href="#" class="mx-1">|</a>
+            <div class="d-flex align-items-center mx-1">
+                <img src="~/images/arabic.png" alt="arabic" width="20" class="mx-1">
+                <a asp-controller="Home" asp-action="Index_ar">AR</a>
+            </div>
+        </div>
+    </div>
+    <div class="cont-padding">
+        <!-- Navik header -->
+        <div class="navik-header-container">
+
+            <!--Logo-->
+            <div class="logo" data-mobile-logo="images/logoNew.png"
+                 data-sticky-logo="images/logoNew.png">
+                <a href="#home"><img src="images/logoNew.png" alt="logo" /></a>
+            </div>
+
+            <!-- Burger menu -->
+            <div class="burger-menu">
+                <div class="line-menu line-half first-line"></div>
+                <div class="line-menu"></div>
+                <div class="line-menu line-half last-line"></div>
+            </div>
+
+            <!--Navigation menu-->
+            <nav class="navik-menu menu-caret submenu-top-border submenu-scale">
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="#home" class="js-anchor-link"><i class="fas fa-home mx-1"></i>Home</a>
+                    </li>
+                    <li><a href="#about" class="js-anchor-link">Who we are</a></li>
+                    <li><a href="#services" class="js-anchor-link">Our Services</a></li>
+                    <li><a href="#partners" class="js-anchor-link">Our Partners</a></li>
+                    <li><a href="#contact" class="js-anchor-link">Contact Us</a></li>
+                   
+                    <partial name="~/Views/Shared/_btn_dash.cshtml" />
+                     <li>
+                        @foreach (var information in Model.Information)
+                        {
+                            <a class="button--gradient js-modal dis-none" data-modal="#modal_2">@information.GetAquote</a>
+                        }
+                    </li>
+                </ul>
+               @foreach (var information in Model.Information)
+            {
+                <a class="button--gradient js-modal dis-block" data-modal="#modal_2">@information.GetAquote</a>
+            }
+            </nav>
+
+        </div>
+
+    </div>
+</div>
+<!---Advance Slider--->
+<div class="Advance-Slider mb-5">
+    <!-- Item -->
+    @foreach (var slider in Model.Sliders)
+    {
+        <div class="item">
+            <div class="img-fill">
+                <img src="@slider.ImageUrl" alt="">
+                <div class="contain-wrapper">
+                    <div class="dots-contain">
+                        <img class="dots-img" src="@slider.ImageUrl" alt="">
+                    </div>
+                    <div class="info">
+                        <div>
+                            <h3><strong> @slider.Name</strong></h3>
+                            <h5>@slider.Text</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- // Item -->
+    }
+</div>
+<main class="">
+    <section class="sectionAbout aboutPadding  block">
+        <div class="container" id="about">
+            <div class="row align-items-center ">
+                @foreach (var about in Model.About)
+                {
+                    <div class="col-md-6">
+                        <div class="sectionAbout-text">
+                            <h3 data-animation="slideInRight">Who we are?</h3>
+                            <p data-animation="slideInUp" data-animation-delay=".3s">
+                                @about.Text1
+                            </p>
+
+                            <h3 data-animation="slideInRight">Mission</h3>
+                            <p data-animation="slideInUp" data-animation-delay=".3s">
+                                @about.Text2
+                            </p>
+
+                            <h3 data-animation="slideInRight">Vision</h3>
+                            <p data-animation="slideInUp" data-animation-delay=".3s">
+                                @about.Text3
+                            </p>
+                            <button onclick="window.location.href='#contact';" data-animation="slideInRight" data-animation-delay=".6s"
+                                class="btn-text mt-4">
+                                Contact Us
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="sectionAbout-images">
+                            <img src="@about.ImageUrl" alt="about" class="img1" data-animation="zoomReverseIn">
+                            <img src="@about.ImageUrl2" alt="about" class="img2" data-animation="zoomReverseIn">
+                        </div>
+                    </div>
+
+                }
+
+            </div>
+        </div>
+    </section>
+    <section class="our-servcies block" id="services">
+        <div class="container">
+            <h3 class="heading-tertiary mt-5">Our Services</h3>
+            <p class="sub-heading sub-heading--black">Expert care for you</p>
+            <div class="row">
+                @foreach (var service in Model.Services)
+                {
+                    <div class="col-md-4">
+                        <div class="box-service" data-animation="slideInRight">
+                            <div class="box-service-img">
+                                <img src="@service.ImageUrl" alt="coding">
+                            </div>
+                            <h4 class="text-center">@service.Name</h4>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </section>
+    <div class="sectionAbout ">
+        <div class="container">
+            <div class="row align-items-center">
+                @foreach (var goal in Model.Goals)
+                {
+                    <div class="col-md-6">
+                        <div class="sectionAbout-images sectionAbout2-img">
+                            <img src="@goal.ImageUrl" alt="about" class="img1">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="sectionAbout-text">
+                            <h3 data-animation="fadeIn" data-animation-delay="300ms">@goal.Name</h3>
+                            <p data-animation="fadeIn" data-animation-delay="600ms" id="text">@goal.Text </p>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+    <section class="section-contact block block-pad" id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="section-contact-text">
+                        <h1 data-animation="slideInRight">Contact Us</h1>
+                        <h5 ata-animation="slideInUp" data-animation-delay=".3s">
+                            IMSHAH AI APPLICATIONS AND SERVICES
+                        </h5>
+                        @foreach (var information in Model.Information)
+                        {
+                            <p class="mt-5" ata-animation="slideInUp" data-animation-delay=".3s">@information.FindUs</p>
+                            <p ata-animation="slideInUp" data-animation-delay=".6s">@information.Workinghours</p>
+                            <p ata-animation="slideInUp" data-animation-delay=".6s">@information.Email</p>
+                            <p ata-animation="slideInUp" data-animation-delay=".6s">@information.Phone</p>
+                        }
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <form asp-controller="Contacts" asp-action="Create" method="post" class="form-style" data-animation="flipInY" data-animation-delay="600ms">
+                        <div class="row align-items-center ">
+                            <div class="col-md-6">
+                                <div class="form-group me-2">
+                                    <label for="firstName">First Name :</label>
+                                    <input type="text" id="firstName" name="firstName" class="form-control"
+                                           placeholder="add first Name" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group ms-2">
+                                    <label for="lastName">Last Name :</label>
+                                    <input type="text" id="lastName" name="lastName" class="form-control"
+                                           placeholder="add last Name" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email :</label>
+                            <input type="email" id="email" name="email" class="form-control"
+                                   placeholder="add email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject :</label>
+                            <input type="text" id="subject" name="subject" class="form-control"
+                                   placeholder="add subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message :</label>
+                            <textarea type="text" id="message" name="message" rows="4" class="form-control"
+                                      placeholder="add message" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit">Send</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <img src="~/images/back.png" alt="" class="img-back">
+    </section>
+    <section class="section-Specialists">
+        <div class="section-Specialists-text">
+            <div class="container">
+                <h4 data-animation="slideInRight">Our Technology Team </h4>
+                <p data-animation="slideInUp" data-animation-delay=".3s">
+                    is one of the best around the globe,
+                    developing and designing software with most Coding
+                    languages. With more than 10 years of experience in Coding and Development, for all kinds of
+                    platforms s and portals.
+                </p>
+                <p class="p-style" data-animation="slideInUp" data-animation-delay=".6s">
+                    Our Tech team is covering:
+                </p>
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-md-2 col-6 my-2">
+                        <button data-animation="slideInUp" data-animation-delay=".3s"> All kinds of Portal</button>
+                    </div>
+                    <div class="col-md-2 col-6 my-2">
+                        <button data-animation="slideInUp" data-animation-delay=".6s"> Native IOS Apps</button>
+                    </div>
+                    <div class="col-md-2 col-6 my-2">
+                        <button data-animation="slideInUp" data-animation-delay=".9s"> Native Android apps</button>
+                    </div>
+                    <div class="col-md-2 col-6 my-2">
+                        <button data-animation="slideInUp" data-animation-delay=".3s"> Huawei Apps</button>
+                    </div>
+                    <div class="col-md-2 col-6 my-2">
+                        <button data-animation="slideInUp" data-animation-delay=".6s">.Net</button>
+                    </div>
+                    <div class="col-md-2 col-6 my-2">
+                        <button data-animation="slideInUp" data-animation-delay=".9s"> Php</button>
+                    </div>
+                    <div class="col-md-2 col-6 my-2">
+                        <button data-animation="slideInUp" data-animation-delay=".3s"> Java </button>
+                    </div>
+                    <div class="col-md-2 col-6 my-2">
+                        <button data-animation="slideInUp" data-animation-delay=".6s"> Out System</button>
+                    </div>
+                    <div class="col-md-2 col-6 my-2">
+                        <button data-animation="slideInUp" data-animation-delay=".9s"> Xamarin</button>
+                    </div>
+                    <div class="col-md-2 col-6 my-2">
+                        <button data-animation="slideInUp" data-animation-delay=".3s"> SEO</button>
+                    </div>
+                    <div class="col-md-2 col-6 my-2">
+                        <button data-animation="slideInUp" data-animation-delay=".6s"> E-pay</button>
+                    </div>
+                    <div class="col-md-2 col-6 my-2">
+                        <button data-animation="slideInUp" data-animation-delay=".9s"> E-survey</button>
+                    </div>
+                    <div class="col-md-2 col-6 my-2">
+                        <button data-animation="slideInUp" data-animation-delay=".3s"> E-lawyer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section2-slider block" id="partners">
+        <h4 data-animation="flipInY" data-animation-delay="600ms">Our Partners </h4>
+        <div class="container">
+            <div class="wrapper">
+                <div class="carousel">
+                    @foreach (var partner in Model.Partner)
+                    {
+                        <div class="card-div product">
+                            <img src="@partner.ImageUrl" alt="">
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+@foreach (var information in Model.Information)
+{
+    <footer class="footer-section">
+        <div class="container">
+            <div class="footer-cta pt-5 pb-5">
+                <div class="row">
+                    <div class="col-xl-4 col-md-4 mb-30">
+                        <div class="single-cta">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div class="cta-text">
+                                <h4>Find us</h4>
+                                <span>@information.FindUs</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-4 mb-30">
+                        <div class="single-cta">
+                            <i class="fas fa-phone"></i>
+                            <div class="cta-text">
+                                <h4>Call us</h4>
+                                <span>@information.Phone</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-4 mb-30">
+                        <div class="single-cta">
+                            <i class="far fa-envelope-open"></i>
+                            <div class="cta-text">
+                                <h4>Mail us</h4>
+                                <span>@information.Email</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-content pt-5 pb-5">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-4 mb-50">
+                        <div class="footer-widget">
+                            <div class="footer-logo">
+                                <a href="index.html">
+                                    <img src="~/images/logoNew.png" class="img-fluid"
+                                     alt="logo">
+                                </a>
+                            </div>
+
+                            <div class="footer-social-icon">
+                                <span>Follow us</span>
+
+                                <a href="@information.Facebook"><i class="fab fa-facebook-f facebook-bg"></i></a>
+                                <a href="@information.Twiter"><i class="fab fa-twitter twitter-bg"></i></a>
+                                <a href="mailto: @information.Email"><i class="fab fa-google-plus-g google-bg"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-5 col-lg-4 col-md-6 mb-50">
+                        <div class="footer-text mt-3">
+                            <p>
+                                IMSHAH AI Platforms and services provide technology  services including training on software, with worldwide experts in Technology, in more than one field, such as web design, AI services, media, and education
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
+                        <div class="footer-widget">
+                            <div class="footer-widget-heading">
+                                <h3>Useful Links</h3>
+                            </div>
+                            <ul>
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">WHo we are</a></li>
+                                <li><a href="#">Our Services</a></li>
+                                <li><a href="#">Our Partners</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="copyright-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 text-center text-lg-left">
+                        <div class="copyright-text">
+                            <p>Copyright &copy; 2023, All Right Reserved </p>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
+                        <div class="footer-menu">
+                            <ul>
+                                <li><a href="#"><i class="fas fa-home mx-1"></i>Home</a></li>
+                                <li><a href="#">Who we are</a></li>
+                                <li><a href="#">Our Services</a></li>
+                                <li><a href="#">Our Partners</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+}
+<style>
+
+
+</style>
+
+
+
+
+
+<!-- /.wrap-center-middle -->
+
+<div id="modal_2" class="modal-window">
+    <div class="modal-window__title section-contact">
+
+        <form asp-controller="Quotes" asp-action="Create" method="post" class="form-style">
+            <h1 class="h1-form">Get Aquote</h1>
+
+            <div class="form-group ">
+                <label for="fullName">Full Name :</label>
+                <input type="text" id="fullName" name="fullName" class="form-control"
+                       placeholder="add Full Name Name" required>
+            </div>
+            <div class="form-group ">
+                <label for="companyName">Company Name :</label>
+                <input type="text" id="companyName" name="companyName" class="form-control"
+                       placeholder="add Company Name Name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email :</label>
+                <input type="email" id="email" name="email" class="form-control"
+                       placeholder="add email" required>
+            </div>
+            <div class="form-group">
+                <label for="subject">Subject :</label>
+                <input type="text" id="subject" name="subject" class="form-control"
+                       placeholder="add subject" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message :</label>
+                <textarea type="text" id="message" name="message" rows="4" class="form-control"
+                          placeholder="add message" required></textarea>
+            </div>
+            <div class="form-group d-flex">
+                <button type="submit">Send</button>
+                <button class="modal-close">Close</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- /#modal_2 -->
+<div class="modal-window__backdrop hidden" id="modal-backdrop"></div>
+
+
+
+
+
+

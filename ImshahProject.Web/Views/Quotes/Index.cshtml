@@ -1,0 +1,49 @@
+﻿
+
+@{
+        Layout = "~/Views/Shared/_dashboard.cshtml";
+}
+
+
+<div class="container p-3">
+       <div class="row pt-4">
+        <div class="col-12">
+            <h1 class="h1-header mt-5"> Table Quotes</h1>
+        </div>
+      
+    </div>
+</div>
+
+<table id="tblData" class="table table-hover table-bordered ">
+
+    <thead>
+        <tr>
+            <th>
+                Full Name
+            </th>
+            <th>
+                Company Name
+            </th>
+             <th>
+                Email Address
+            </th>
+              <th>
+                Subject
+            </th>
+             <th>
+                Message
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+    </thead>
+
+</table>
+
+ 
+@section Scripts{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="~/Components/js/Quote.js"></script>
+}

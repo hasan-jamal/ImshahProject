@@ -1,0 +1,6 @@
+﻿@inject UserManager<ApplicationUser> userManager;
+
+@if (User.Identity!.IsAuthenticated)
+{
+     <li><a asp-controller="Slider" asp-action="Index" >لوحة التحكم</a></li>
+}
