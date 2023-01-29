@@ -73,12 +73,12 @@ namespace ImshahProject.Web.Controllers
                 if (sliderVM.Slider.Id == 0)
                 {
                     _unitOfWork.sliders.Add(sliderVM.Slider);
-                    TempData["success"] = " Create Service is successfully";
+                    TempData["success"] = " Create Slider is successfully";
                 }
                 else
                 {
                     _unitOfWork.sliders.Update(sliderVM.Slider);
-                    TempData["success"] = " Update Service is successfully";
+                    TempData["success"] = " Update Slider is successfully";
                 }
                 _unitOfWork.Save();
 

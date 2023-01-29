@@ -19,7 +19,6 @@ namespace ImshahProject.Web.Models
         [Required(ErrorMessage = "Text Arabic is required")]
         public string? Text_ar { get; set; }
         [Display(Name = "Link Image")]
-        [Required(ErrorMessage = "Link Image is required")]
         public string? ImageUrl { get; set; }
     }
 }
