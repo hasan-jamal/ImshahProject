@@ -44,7 +44,7 @@ namespace ImshahProject.Web.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Upsert(GoalsVM goalVM, IFormFile? file)
+        public IActionResult Upsert(GoalsVM goalVM, IFormFile? file, IFormFile? file2)
         {
             if (ModelState.IsValid)
             {
@@ -66,17 +66,37 @@ namespace ImshahProject.Web.Controllers
                     {
                         file.CopyTo(fileStream);
                     }
-                    goalVM.Goal.ImageUrl = @"\Components\Images\Goals\" + fileName + extension;
+                
+                    goalVM.Goal.ImageUrl = fileName + extension;
+                }
+                if(file2 != null)
+                {
+                    string fileName2 = Guid.NewGuid().ToString();
+                    var uploads = Path.Combine(wwwRootPath, @"Components\Images\Goals");
+                    var extension2 = Path.GetExtension(file2.FileName);
+                    if (goalVM.Goal.ImageUrl2 != null)
+                    {
+                        var oldImagePath = Path.Combine(wwwRootPath, goalVM.Goal.ImageUrl.TrimStart('\\'));
+                        if (System.IO.File.Exists(oldImagePath))
+                        {
+                            System.IO.File.Delete(oldImagePath);
+                        }
+                    }
+                    using (var fileStream = new FileStream(Path.Combine(uploads, fileName2 + extension2), FileMode.Create))
+                    {
+                        file2.CopyTo(fileStream);
+                    }
+                    goalVM.Goal.ImageUrl2 = fileName2 + extension2;
                 }
                 if (goalVM.Goal.Id == 0)
                 {
                     _unitOfWork.goals.Add(goalVM.Goal);
-                    TempData["success"] = " Create Goal is successfully";
+                    TempData["success"] = " Create Goal Data is successfully";
                 }
                 else
                 {
                     _unitOfWork.goals.Update(goalVM.Goal);
-                    TempData["success"] = " Update Goal is successfully";
+                    TempData["success"] = " Update Goal Data is successfully";
                 }
                 _unitOfWork.Save();
 
@@ -84,6 +104,7 @@ namespace ImshahProject.Web.Controllers
             }
             return View(goalVM);
         }
+
 
         [HttpGet]
         public IActionResult Delete(int? id)
@@ -134,9 +155,15 @@ namespace ImshahProject.Web.Controllers
                 return Json(new { success = false, message = "Error While deleting" });
             }
             var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, goal.ImageUrl.TrimStart('\\'));
+            var oldImagePath1 = Path.Combine(_webHostEnvironment.WebRootPath, goal.ImageUrl2.TrimStart('\\'));
+
             if (System.IO.File.Exists(oldImagePath))
             {
                 System.IO.File.Delete(oldImagePath);
+            }
+            if (System.IO.File.Exists(oldImagePath1))
+            {
+                System.IO.File.Delete(oldImagePath1);
             }
             _unitOfWork.goals.Remove(goal);
             _unitOfWork.Save();

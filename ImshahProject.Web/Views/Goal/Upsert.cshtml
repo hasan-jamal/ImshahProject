@@ -14,17 +14,36 @@
             <hr />
         </div>
         @*<div asp-validation-summary="All"></div>*@
-        <div class="col-lg-6">
-            <div class="mb-3">
-                <label asp-for="Goal.Name"></label>
-                <input asp-for="Goal.Name" class="form-control" />
-                <span asp-validation-for="Goal.Name" class="text-danger"></span>
+            <div class="col-lg-6">
+                    <div class="mb-3">
+                        <label asp-for="Goal.Name"></label>
+                        <input asp-for="Goal.Name" class="form-control" />
+                        <span asp-validation-for="Goal.Name" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3 ">
+                        <label asp-for="Goal.Text"></label>
+                        <textarea asp-for="Goal.Text"  rows="8" class="form-control"></textarea>
+                        <span asp-validation-for="Goal.Text" class="text-danger"></span>
+                    </div>
+        
+             </div>
+               <div class="mb-3 col-lg-6">
+
+            <input type='file' name="file" asp-for="Goal.ImageUrl" id="file-input" />
+
+            <div id='img_contain'>
+                @if (Model.Goal.Id != 0)
+                {
+                    <img id="image-preview" align='middle' src="~/Components/Images/Goals/@Model.Goal.ImageUrl" alt="your image" title='' />
+                }
+                else
+                {
+                    <img id="image-preview" align='middle' src="https://cdn4.vectorstock.com/i/thumb-large/18/73/add-box-simple-icon-on-white-background-vector-3431873.jpg" alt="your image" title='' />
+
+                }
             </div>
-            <div class="mb-3 ">
-                <label asp-for="Goal.Text"></label>
-                <textarea asp-for="Goal.Text"  rows="8" class="form-control"></textarea>
-                <span asp-validation-for="Goal.Text" class="text-danger"></span>
-            </div>
+        </div>
+           <div class="col-lg-6">
              <div class="mb-3">
                 <label asp-for="Goal.Name_ar"></label>
                 <input asp-for="Goal.Name_ar" class="form-control" />
@@ -37,23 +56,22 @@
                 <span asp-validation-for="Goal.Text_ar" class="text-danger"></span>
             </div>
         </div>
-        <div class="mb-3 col-lg-6">
+      
+     <div class="mb-3 col-lg-6">
 
-            <input type='file' name="file" asp-for="Goal.ImageUrl" id="file-input" />
+            <input type='file' name="file2" asp-for="Goal.ImageUrl2" id="file-input1" />
 
             <div id='img_contain'>
                 @if (Model.Goal.Id != 0)
                 {
-                    <img id="image-preview" align='middle' src="@Model.Goal.ImageUrl" alt="your image" title='' />
+                    <img id="image-preview1" align='middle' src="~/Components/Images/Goals/@Model.Goal.ImageUrl2" alt="your image" title='' />
                 }
                 else
                 {
-                    <img id="image-preview" align='middle' src="https://cdn4.vectorstock.com/i/thumb-large/18/73/add-box-simple-icon-on-white-background-vector-3431873.jpg" alt="your image" title='' />
-
+                    <img id="image-preview1" align='middle' src="https://cdn4.vectorstock.com/i/thumb-large/18/73/add-box-simple-icon-on-white-background-vector-3431873.jpg" alt="your image" title='' />
                 }
             </div>
         </div>
-     
         <div class="col-lg-12">
             @if (Model.Goal.Id != 0)
             {
@@ -65,6 +83,7 @@
             }
             <a class="btn btn-secondary"  asp-controller="Goal" asp-action="Index">Back To List</a>
         </div>
+
     </div>
 </form>
 
@@ -110,8 +129,24 @@
       readURL(this);
     });
 
+    function readURL1(input) {
+      if (input.files && input.files[0]) {
+        var reader1 = new FileReader();
+        reader1.onload = function(e) {
+          $('#image-preview1').attr('src', e.target.result);
+          $('#image-preview1').hide();
+          $('#image-preview1').fadeIn(650);
+        }
+        reader1.readAsDataURL(input.files[0]);
+      }
+    }
+
+    $("#file-input1").change(function() {
+      readURL1(this);
+    });
   
 
 </script>
+
 
 }

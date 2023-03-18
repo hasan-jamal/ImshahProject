@@ -17,6 +17,8 @@ function LoadDataTable() {
             { "data": "workinghours", "width": "5%" },
             { "data": "facebook", "width": "5%" },
             { "data": "twiter", "width": "5%" },
+            { "data": "instgram", "width": "5%" },
+            { "data": "tiktok", "width": "5%" },
             { "data": "getAquote", "width": "5%" },
             { "data": "getAquote_ar", "width": "5%" },
             {

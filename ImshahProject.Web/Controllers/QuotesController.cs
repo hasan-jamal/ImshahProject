@@ -119,6 +119,7 @@ namespace ImshahProject.Web.Controllers
         }
 
         [HttpDelete]
+        [AllowAnonymous]
         public IActionResult DeleteItem(int? id)
         {
             var Quote = _unitOfWork.quotes.GetFirstOrDeafult(u => u.Id == id);

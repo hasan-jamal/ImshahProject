@@ -26,7 +26,7 @@ namespace ImshahProject.Web.Controllers
                 About = _db.Abouts.ToList(),
                 Information = _db.Informations.ToList(),
                 Partner = _db.Partners.ToList()
-
+                
             };
             return View(tables);
         }

@@ -67,7 +67,7 @@ namespace ImshahProject.Web.Controllers
                     {
                         file.CopyTo(fileStream);
                     }
-                    partnerVM.Partner.ImageUrl = @"\Components\Images\Partners\" + fileName + extension;
+                    partnerVM.Partner.ImageUrl =  fileName + extension;
                 }
                 if (partnerVM.Partner.Id == 0)
                 {
@@ -102,6 +102,7 @@ namespace ImshahProject.Web.Controllers
         }
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public IActionResult DeletePost(int? id)
         {
             var partners = _unitOfWork.partners.GetFirstOrDeafult(u => u.Id == id);
@@ -120,6 +121,7 @@ namespace ImshahProject.Web.Controllers
 
         #region API CALLS
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult GetAll()
         {
             var allPartners = _unitOfWork.partners.GetAll();

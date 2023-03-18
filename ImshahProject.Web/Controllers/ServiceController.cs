@@ -68,7 +68,7 @@ namespace ImshahProject.Web.Controllers
                     {
                         file.CopyTo(fileStream);
                     }
-                    serviceVM.Service.ImageUrl = @"\Components\Images\Services\" + fileName + extension;
+                    serviceVM.Service.ImageUrl = fileName + extension;
                 }
                 if (serviceVM.Service.Id == 0)
                 {

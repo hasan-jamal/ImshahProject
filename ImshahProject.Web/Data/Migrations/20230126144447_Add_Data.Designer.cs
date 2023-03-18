@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace ImshahProject.Web.Migrations
+namespace ImshahProject.Web.Data.Migrations
 {
     [DbContext(typeof(ImshahProjectContext))]
     [Migration("20230126144447_Add_Data")]

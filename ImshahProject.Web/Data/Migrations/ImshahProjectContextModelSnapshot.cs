@@ -155,7 +155,7 @@ namespace ImshahProject.Web.Data.Migrations
                         {
                             Id = "a18be9c0-aa65-4af8-bd17-00bd9344e575",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ec32a09e-7037-4c48-81a1-aa7180db4f4c",
+                            ConcurrencyStamp = "ac82c7eb-162e-4797-9a39-1d2c895345bb",
                             Email = "admin@imashah.com",
                             EmailConfirmed = true,
                             IsActive = true,
@@ -163,7 +163,7 @@ namespace ImshahProject.Web.Data.Migrations
                             Name = "Admin",
                             NormalizedEmail = "admin@imashah.com",
                             NormalizedUserName = "adminNew",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDznCYO0d+En9xKQKRLDZs5sdHdDNvZlUQOpJ8Mo2voS60XA62A4EuP3hH4NsXR/Dw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBpyaS2+lMZY2/BmrEyBUpQ5YrzEEJznDdzg8qIaf6VTwv3Ou2+m6ejZR7Akuwt4UQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -213,6 +213,9 @@ namespace ImshahProject.Web.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl2")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -272,7 +275,13 @@ namespace ImshahProject.Web.Data.Migrations
                     b.Property<string>("GetAquote_ar")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Instgram")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Tiktok")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Twiter")
@@ -380,7 +389,6 @@ namespace ImshahProject.Web.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("ImageUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -434,14 +442,14 @@ namespace ImshahProject.Web.Data.Migrations
                         new
                         {
                             Id = "c3a2cde1-caac-4a6c-a24f-1b5d35b47f59",
-                            ConcurrencyStamp = "7afca346-a5d5-4cba-ba0a-94c975355912",
+                            ConcurrencyStamp = "e033d498-8022-483c-8360-7df94d58e190",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "a5761da7-a17f-48fa-bcd3-aa25d7b75d15",
-                            ConcurrencyStamp = "3828f2fe-9eb2-4d19-b140-e06cd3c1ca50",
+                            ConcurrencyStamp = "d1e5bec5-01aa-44ab-8a99-3e136e3afedb",
                             Name = "Customer ",
                             NormalizedName = "CUSTOMER"
                         });

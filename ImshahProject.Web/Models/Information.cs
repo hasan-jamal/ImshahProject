@@ -18,6 +18,11 @@ namespace ImshahProject.Web.Models
         [Display(Name = "Twiter Link")]
         public string? Twiter { get; set; }
 
+        [Display(Name = "Instgram Link")]
+        public string? Instgram { get; set; }
+        [Display(Name = "Tiktok Link")]
+        public string? Tiktok { get; set; }
+
         [Display(Name = "Get Aquote")]
         public string? GetAquote { get; set; }
 

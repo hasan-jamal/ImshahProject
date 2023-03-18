@@ -3,7 +3,6 @@
 $(document).ready(function () {
     LoadDataTable();
 });
-
 function LoadDataTable() {
  
     dataTable = $('#tblData').DataTable({
@@ -15,7 +14,14 @@ function LoadDataTable() {
                 "data": "imageUrl", "name": "imageUrl", "defaultContent": "<i>-</i>",
                 "render": function (data, type, row, meta) {
                  
-                    return '<img src="' + data + '" class="img-datatable" />';
+                    return '<img src="Components/Images/Goals/' + data + '" class="img-datatable" />';
+                }, "width": "5%"
+            },
+            {
+                "data": "imageUrl2", "name": "imageUrl2", "defaultContent": "<i>-</i>",
+                "render": function (data, type, row, meta) {
+
+                    return '<img src="Components/Images/Goals/' + data + '" class="img-datatable" />';
                 }, "width": "5%"
             },
             { "data": "name", "width": "5%" },

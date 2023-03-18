@@ -20,6 +20,6 @@ namespace ImshahProject.Web.Models
         public string? Text_ar { get; set; }
 
         public string? ImageUrl { get; set; }
-
+        public string? ImageUrl2 { get; set; }
     }
 }

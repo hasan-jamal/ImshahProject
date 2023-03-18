@@ -28,6 +28,10 @@ namespace ImshahProject.Web.DataAccess.Repository
                 {
                     goalId.ImageUrl = obj.ImageUrl;
                 }
+                if (obj.ImageUrl2 != null)
+                {
+                    goalId.ImageUrl2 = obj.ImageUrl2;
+                }
             }
         }
     }

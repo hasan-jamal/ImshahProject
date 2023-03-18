@@ -55,6 +55,9 @@ namespace ImshahProject.Web.Controllers
                 {
                     string fileName = Guid.NewGuid().ToString();
                     var uploads = Path.Combine(wwwRootPath, @"Components\Images\Sliders");
+                    if (!Directory.Exists(Path.Combine(uploads)))
+                         Directory.CreateDirectory(Path.Combine(uploads));
+                            
                     var extension = Path.GetExtension(file.FileName);
                     if (sliderVM.Slider.ImageUrl != null)
                     {
@@ -68,7 +71,7 @@ namespace ImshahProject.Web.Controllers
                     {
                         file.CopyTo(fileStream);
                     }
-                    sliderVM.Slider.ImageUrl = @"\Components\Images\Sliders\" + fileName + extension;
+                    sliderVM.Slider.ImageUrl = fileName + extension;
                 }
                 if (sliderVM.Slider.Id == 0)
                 {

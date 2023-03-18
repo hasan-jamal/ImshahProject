@@ -40,12 +40,10 @@
 
             </header>
                 <partial name="~/Views/Shared/_Identity.cshtml" />
-         
-
         </div>
 
         <div class='dashboard-app'>
-           <partial name="~/Views/Shared/_header_dash.cshtml" />
+            <partial name="~/Views/Shared/_header_dash.cshtml" />
 
             <div class='dashboard-content mt-5'>
                 <partial name="~/Views/Shared/_Notification.cshtml" />
@@ -57,38 +55,28 @@
                 <p class="text-center"></p>
             </div>
         </div>
-
     </div>
-    </div>
-    </div>
+  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="~/assetsDashBoard/js/dashboard.js"> </script>
+    <script src="~/assetsDashBoard/js/dashboard.js"></script>
     <div id="page-container">
-        <div id="content-wrap">
-            <!-- all other page content -->
-        </div>
-        <footer id="footer">
-            © 2022
-            IMSHAH
-        </footer>
+    <footer id="footer">  
+        © 2022
+        IMSHAH
+    </footer>
     </div>
     <script>
         $(document).ready(function(){
              $('.dashboard-nav-list').find('[href="'+window.location.pathname+'"]').parent().addClass('dashboard-back');
         });
-
     </script>
-
     <!-- font -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
     <!-- ionicons -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-     <!--sweetalert2  JS---->
-     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
      <!--tinymce  JS---->
     <script src="https://cdn.tiny.cloud/1/s9uv9aosgi70ab9iuq3du56r9m1aw90smmmz5s98d7mv81bf/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     <!--Toastr  JS---->
@@ -96,6 +84,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- icon i -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <!--sweetalert2  JS---->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 

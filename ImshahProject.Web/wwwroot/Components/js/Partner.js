@@ -3,7 +3,7 @@
 $(document).ready(function () {
     LoadDataTable();
 });
-
+var baseUrl = "http://www.imshah.com/Components/Images/Partners/";
 function LoadDataTable() {
     dataTable = $('#tblData').DataTable({
         "ajax": {
@@ -14,7 +14,7 @@ function LoadDataTable() {
                 "data": "imageUrl", "name": "imageUrl", "defaultContent": "<i>-</i>",
                 "render": function (data, type, row, meta) {
 
-                    return '<img src="' + data + '" class="img-datatable" style="width:100%;object-fit:contain; height:100px;" />';
+                    return '<img src=' + baseUrl + data + ' class="img-datatable" style="width:100%;object-fit:contain; height:100px;" />';;
                 }, "width": "15%"
             },
             { "data": "name", "width": "15%" },
@@ -23,7 +23,7 @@ function LoadDataTable() {
                 "render": function (data) {
                     return `
                 <a class="btn-primary btn" href="./Partner/Upsert?id=${data}"><i class="bi bi-pencil-square"></i></a>
-                 <!----<a class="btn-danger btn" onClick="Delete('./Partner/DeleteItem/${data}')" ><i class="bi bi-trash3"></i></a>--->
+                <a class="btn-danger btn" onClick="Delete('./Partner/DeleteItem/${data}')" ><i class="bi bi-trash3"></i></a>
                            `
                 },
                 "width": "15%"

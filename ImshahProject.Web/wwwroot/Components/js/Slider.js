@@ -3,7 +3,7 @@
 $(document).ready(function () {
     LoadDataTable();
 });
-
+var baseUrl = "http://www.imshah.com/Components/Images/Sliders/";
 function LoadDataTable() {
     dataTable = $('#tblData').DataTable({
         "ajax": {
@@ -14,7 +14,7 @@ function LoadDataTable() {
                 "data": "imageUrl", "name": "imageUrl", "defaultContent": "<i>-</i>",
                 "render": function (data, type, row, meta) {
 
-                    return '<img src="' + data + '" class="img-datatable" />';
+                    return '<img src='+ baseUrl + data + ' class="img-datatable" />';
                 }, "width": "5%"
             },
             { "data": "name", "width": "5%" },

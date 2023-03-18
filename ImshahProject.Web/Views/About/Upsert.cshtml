@@ -61,7 +61,7 @@
             <div id='img_contain'>
                 @if (Model.About.Id != 0)
                 {
-                    <img id="image-preview" align='middle' src="@Model.About.ImageUrl" alt="your image" title='' />
+                    <img id="image-preview" align='middle' src="~/Components/Images/Abouts/@Model.About.ImageUrl" alt="your image" title='' />
                 }
                 else
                 {
@@ -71,14 +71,14 @@
             </div>
         </div>
 
-            <div class="mb-3 col-lg-6">
+        <div class="mb-3 col-lg-6">
 
             <input type='file' name="file2" asp-for="About.ImageUrl2" id="file-input1" />
 
             <div id='img_contain'>
                 @if (Model.About.Id != 0)
                 {
-                    <img id="image-preview1" align='middle' src="@Model.About.ImageUrl2" alt="your image" title='' />
+                    <img id="image-preview1" align='middle' src="~/Components/Images/Abouts/@Model.About.ImageUrl2" alt="your image" title='' />
                 }
                 else
                 {

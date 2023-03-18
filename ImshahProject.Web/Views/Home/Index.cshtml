@@ -66,30 +66,37 @@
 
     </div>
 </div>
-<!---Advance Slider--->
-<div class="Advance-Slider mb-5">
-    <!-- Item -->
-    @foreach (var slider in Model.Sliders)
-    {
-        <div class="item">
-            <div class="img-fill">
-                <img src="@slider.ImageUrl" alt="">
-                <div class="contain-wrapper">
-                    <div class="dots-contain">
-                        <img class="dots-img" src="@slider.ImageUrl" alt="">
-                    </div>
-                    <div class="info">
-                        <div>
-                            <h3><strong> @slider.Name</strong></h3>
-                            <h5>@slider.Text</h5>
-                        </div>
-                    </div>
+
+<div class="container-slide">
+            <div id="overflow-all"></div>
+            <div class="arrow arrow-left"><i class="fas fa-chevron-circle-left"></i></div>
+            @foreach (var slider in Model.Sliders)
+             {
+            <div class="img">
+            <img src="http://www.imshah.com/Components/Images/Sliders/@slider.ImageUrl" alt="">
+                <div class="box-text">
+                    <h1>@slider.Name</h1>
+                    <p>@slider.Text</p>
                 </div>
             </div>
-        </div>
-        <!-- // Item -->
-    }
-</div>
+             }
+         
+            <div class="arrow arrow-right"><i class="fas fa-chevron-circle-right"></i>
+            </div>
+         <div class="dots">
+              <div class="dot">
+                <i class="far fa-dot-circle"></i>
+              </div>
+              <div class="dot">
+                <i class="far fa-circle"></i>
+              </div>
+              <div class="dot">
+                <i class="far fa-circle"></i>
+              </div>
+            </div>
+          </div>
+
+
 <main class="">
     <section class="sectionAbout aboutPadding  block">
         <div class="container" id="about">
@@ -99,20 +106,20 @@
                     <div class="col-md-6">
                         <div class="sectionAbout-text">
                             <h3 data-animation="slideInRight">Who we are?</h3>
-                            <p data-animation="slideInUp" data-animation-delay=".3s">
+                            <p >
                                 @about.Text1
                             </p>
 
                             <h3 data-animation="slideInRight">Mission</h3>
-                            <p data-animation="slideInUp" data-animation-delay=".3s">
+                            <p >
                                 @about.Text2
                             </p>
 
                             <h3 data-animation="slideInRight">Vision</h3>
-                            <p data-animation="slideInUp" data-animation-delay=".3s">
+                            <p >
                                 @about.Text3
                             </p>
-                            <button onclick="window.location.href='#contact';" data-animation="slideInRight" data-animation-delay=".6s"
+                            <button onclick="window.location.href='#contact';" 
                                 class="btn-text mt-4">
                                 Contact Us
                             </button>
@@ -120,8 +127,8 @@
                     </div>
                     <div class="col-md-6">
                         <div class="sectionAbout-images">
-                            <img src="@about.ImageUrl" alt="about" class="img1" data-animation="zoomReverseIn">
-                            <img src="@about.ImageUrl2" alt="about" class="img2" data-animation="zoomReverseIn">
+                            <img src="http://www.imshah.com/Components/Images/Abouts/@about.ImageUrl" alt="about" class="img1">
+                            <img src="http://www.imshah.com/Components/Images/Abouts/@about.ImageUrl2" alt="about" class="img2">
                         </div>
                     </div>
 
@@ -138,9 +145,9 @@
                 @foreach (var service in Model.Services)
                 {
                     <div class="col-md-4">
-                        <div class="box-service" data-animation="slideInRight">
+                        <div class="box-service">
                             <div class="box-service-img">
-                                <img src="@service.ImageUrl" alt="coding">
+                                <img src="http://www.imshah.com/Components/Images/Services/@service.ImageUrl" alt="coding">
                             </div>
                             <h4 class="text-center">@service.Name</h4>
                         </div>
@@ -152,18 +159,20 @@
     </section>
     <div class="sectionAbout ">
         <div class="container">
-            <div class="row align-items-center">
+            <div class="row ">
                 @foreach (var goal in Model.Goals)
                 {
                     <div class="col-md-6">
                         <div class="sectionAbout-images sectionAbout2-img">
-                            <img src="@goal.ImageUrl" alt="about" class="img1">
+                            <img src="http://www.imshah.com/Components/Images/Goals/@goal.ImageUrl" alt="about" class="img1">
+                            <img src="http://www.imshah.com/Components/Images/Goals/@goal.ImageUrl2" alt="about" class="img1">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="sectionAbout-text">
-                            <h3 data-animation="fadeIn" data-animation-delay="300ms">@goal.Name</h3>
-                            <p data-animation="fadeIn" data-animation-delay="600ms" id="text">@goal.Text </p>
+                            <h3 >@goal.Name</h3>
+                            <p id="text">@goal.Text </p>
+                            <button class="btn-text" onclick="toggleText(this)">Read more</button>
                         </div>
                     </div>
                 }
@@ -176,16 +185,16 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="section-contact-text">
-                        <h1 data-animation="slideInRight">Contact Us</h1>
-                        <h5 ata-animation="slideInUp" data-animation-delay=".3s">
+                        <h1 >Contact Us</h1>
+                        <h5 ata-animation="slideInUp">
                             IMSHAH AI APPLICATIONS AND SERVICES
                         </h5>
                         @foreach (var information in Model.Information)
                         {
-                            <p class="mt-5" ata-animation="slideInUp" data-animation-delay=".3s">@information.FindUs</p>
-                            <p ata-animation="slideInUp" data-animation-delay=".6s">@information.Workinghours</p>
-                            <p ata-animation="slideInUp" data-animation-delay=".6s">@information.Email</p>
-                            <p ata-animation="slideInUp" data-animation-delay=".6s">@information.Phone</p>
+                            <p class="mt-5" ata-animation="slideInUp" >@information.FindUs</p>
+                            <p >@information.Workinghours</p>
+                            <p>@information.Email</p>
+                            <p >@information.Phone</p>
                         }
                     </div>
                 </div>
@@ -235,70 +244,131 @@
     </section>
     <section class="section-Specialists">
         <div class="section-Specialists-text">
-            <div class="container">
-                <h4 data-animation="slideInRight">Our Technology Team </h4>
-                <p data-animation="slideInUp" data-animation-delay=".3s">
-                    is one of the best around the globe,
-                    developing and designing software with most Coding
-                    languages. With more than 10 years of experience in Coding and Development, for all kinds of
-                    platforms s and portals.
-                </p>
-                <p class="p-style" data-animation="slideInUp" data-animation-delay=".6s">
-                    Our Tech team is covering:
-                </p>
+            <div class="container-padding">
+                <h4>Our Products </h4>
                 <div class="row align-items-center justify-content-center">
-                    <div class="col-md-2 col-6 my-2">
-                        <button data-animation="slideInUp" data-animation-delay=".3s"> All kinds of Portal</button>
+                    <div class="col-md-4 col-6 my-2">
+                        <button data-animation="slideInUp" data-animation-delay=".3s">
+                            E-Survey
+                        </button>
                     </div>
-                    <div class="col-md-2 col-6 my-2">
-                        <button data-animation="slideInUp" data-animation-delay=".6s"> Native IOS Apps</button>
+                    <div class="col-md-4 col-6 my-2">
+                        <button data-animation="slideInUp" data-animation-delay=".6s"> E- Store</button>
                     </div>
-                    <div class="col-md-2 col-6 my-2">
-                        <button data-animation="slideInUp" data-animation-delay=".9s"> Native Android apps</button>
+                    <div class="col-md-4 col-6 my-2">
+                        <button data-animation="slideInUp" data-animation-delay=".9s">
+                            Learning Management System
+                        </button>
                     </div>
-                    <div class="col-md-2 col-6 my-2">
-                        <button data-animation="slideInUp" data-animation-delay=".3s"> Huawei Apps</button>
+                    <div class="col-md-4 col-6 my-2">
+                        <button data-animation="slideInUp" data-animation-delay=".3s">
+                            Employee Application
+                        </button>
                     </div>
-                    <div class="col-md-2 col-6 my-2">
-                        <button data-animation="slideInUp" data-animation-delay=".6s">.Net</button>
+                    <div class="col-md-4 col-6 my-2">
+                        <button data-animation="slideInUp" data-animation-delay=".6s">
+                            E-Volunteer
+                        </button>
                     </div>
-                    <div class="col-md-2 col-6 my-2">
-                        <button data-animation="slideInUp" data-animation-delay=".9s"> Php</button>
+                    <div class="col-md-4 col-6 my-2">
+                        <button data-animation="slideInUp" data-animation-delay=".9s">
+                            CRM Application
+                        </button>
                     </div>
-                    <div class="col-md-2 col-6 my-2">
-                        <button data-animation="slideInUp" data-animation-delay=".3s"> Java </button>
+                    <div class="col-md-4 col-6 my-2">
+                        <button data-animation="slideInUp" data-animation-delay=".3s">
+                            Event Management System
+                        </button>
                     </div>
-                    <div class="col-md-2 col-6 my-2">
-                        <button data-animation="slideInUp" data-animation-delay=".6s"> Out System</button>
+                    <div class="col-md-4 col-6 my-2">
+                        <button data-animation="slideInUp" data-animation-delay=".6s">
+                            Catering Management System
+                        </button>
                     </div>
-                    <div class="col-md-2 col-6 my-2">
-                        <button data-animation="slideInUp" data-animation-delay=".9s"> Xamarin</button>
+                    <div class="col-md-4 col-6 my-2">
+                        <button data-animation="slideInUp" data-animation-delay=".9s"> Education Training Application</button>
                     </div>
-                    <div class="col-md-2 col-6 my-2">
-                        <button data-animation="slideInUp" data-animation-delay=".3s"> SEO</button>
+                
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section-Specialists">
+        <div class="section-Specialists-text">
+            <div class="container-padding">
+                <h4>
+                    Our News Magazine
+                </h4>
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-md-4 col-6 my-2">
+                        <button data-animation="slideInUp" data-animation-delay=".3s">
+                            2023 April Release
+                        </button>
                     </div>
-                    <div class="col-md-2 col-6 my-2">
-                        <button data-animation="slideInUp" data-animation-delay=".6s"> E-pay</button>
+                    <div class="col-md-4 col-6 my-2">
+                        <button data-animation="slideInUp" data-animation-delay=".6s">
+                            2023 July Release
+                        </button>
                     </div>
-                    <div class="col-md-2 col-6 my-2">
-                        <button data-animation="slideInUp" data-animation-delay=".9s"> E-survey</button>
+                    <div class="col-md-4 col-6 my-2">
+                        <button data-animation="slideInUp" data-animation-delay=".9s">
+                            2023 September Release
+                        </button>
                     </div>
-                    <div class="col-md-2 col-6 my-2">
-                        <button data-animation="slideInUp" data-animation-delay=".3s"> E-lawyer</button>
+                    <div class="col-md-4 col-6 my-2">
+                        <button data-animation="slideInUp" data-animation-delay=".3s"> 2023 December Release</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+  
+    <div id="projectFacts" class="sectionClass" >
+        <div class="fullWidth eight columns">
+            <div class="projectFactsWrap ">
+                <div class="item wow fadeInUpBig animated animated" data-number="12" style="visibility: visible;">
+                    <i class="fa fa-briefcase"></i>
+                    <p id="number1" class="number">12</p>
+                    <span></span>
+                    <p>Products</p>
+                </div>
+                <div class="item wow fadeInUpBig animated animated" data-number="55" style="visibility: visible;">
+                    <i class="fa fa-smile-o"></i>
+                    <p id="number2" class="number">55</p>
+                    <span></span>
+                    <p>Happy clients</p>
+                </div>
+                <div class="item wow fadeInUpBig animated animated" data-number="359" style="visibility: visible;">
+                    <i class="fas fa-code"></i>
+                    <p id="number3" class="number">359</p>
+                    <span></span>
+                    <p>Expert</p>
+                </div>
+                <div class="item wow fadeInUpBig animated animated" data-number="246" style="visibility: visible;">
+                    <i class="fas fa-user-graduate"></i>
+                    <p id="number4" class="number">246</p>
+                    <span></span>
+                    <p>Students</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="section2-slider block visitors" id="partners">
+        <h4>Visitors</h4>
+        <div class="container">
+            <h1 id="count" class="count-style">0</h1>
+        </div>
+    </section>
+
     <section class="section2-slider block" id="partners">
-        <h4 data-animation="flipInY" data-animation-delay="600ms">Our Partners </h4>
+        <h4 >Our Clients and Partners</h4>
         <div class="container">
             <div class="wrapper">
                 <div class="carousel">
                     @foreach (var partner in Model.Partner)
                     {
                         <div class="card-div product">
-                            <img src="@partner.ImageUrl" alt="">
+                            <img src="http://www.imshah.com/Components/Images/Partners/@partner.ImageUrl" alt="">
                         </div>
                     }
 
@@ -311,10 +381,10 @@
 @foreach (var information in Model.Information)
 {
     <footer class="footer-section">
-        <div class="container">
+        <div class="container-padding">
             <div class="footer-cta pt-5 pb-5">
                 <div class="row">
-                    <div class="col-xl-4 col-md-4 mb-30">
+                    <div class="col-xl-2 col-md-4 mb-30">
                         <div class="single-cta">
                             <i class="fas fa-map-marker-alt"></i>
                             <div class="cta-text">
@@ -323,7 +393,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-md-4 mb-30">
+                    <div class="col-xl-2 col-md-4 mb-30">
                         <div class="single-cta">
                             <i class="fas fa-phone"></i>
                             <div class="cta-text">
@@ -332,7 +402,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-md-4 mb-30">
+                    <div class="col-xl-2 col-md-4 mb-30">
                         <div class="single-cta">
                             <i class="far fa-envelope-open"></i>
                             <div class="cta-text">
@@ -341,72 +411,41 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="footer-content pt-5 pb-5">
-                <div class="row">
-                    <div class="col-xl-3 col-lg-4 mb-50">
+                    <div class="col-xl-3 col-lg-4 col-md-6 mb-30">
                         <div class="footer-widget">
-                            <div class="footer-logo">
-                                <a href="index.html">
-                                    <img src="~/images/logoNew.png" class="img-fluid"
-                                     alt="logo">
-                                </a>
-                            </div>
 
-                            <div class="footer-social-icon">
-                                <span>Follow us</span>
-
-                                <a href="@information.Facebook"><i class="fab fa-facebook-f facebook-bg"></i></a>
-                                <a href="@information.Twiter"><i class="fab fa-twitter twitter-bg"></i></a>
-                                <a href="mailto: @information.Email"><i class="fab fa-google-plus-g google-bg"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-5 col-lg-4 col-md-6 mb-50">
-                        <div class="footer-text mt-3">
-                            <p>
-                                IMSHAH AI Platforms and services provide technology  services including training on software, with worldwide experts in Technology, in more than one field, such as web design, AI services, media, and education
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
-                        <div class="footer-widget">
-                            <div class="footer-widget-heading">
-                                <h3>Useful Links</h3>
-                            </div>
                             <ul>
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">WHo we are</a></li>
-                                <li><a href="#">Our Services</a></li>
-                                <li><a href="#">Our Partners</a></li>
-                                <li><a href="#">Contact Us</a></li>
+                                <li><a href="#home">Home</a></li>
+                                <li><a href="#about">WHo we are</a></li>
+                                <li><a href="#services">Our Services</a></li>
+                                <li><a href="#partners">Our Partners</a></li>
+                                <li><a href="#contact">Contact Us</a></li>
+                                <li><a href="mailto: info@imshah.com">Careers</a></li>
                             </ul>
                         </div>
                     </div>
-
+                    <div class="col-xl-3">
+                        <div class="footer-social-icon">
+                            <span class="ms-5">Follow Us</span>
+                            <a href="@information.Facebook"><img src="~/images/facebook.png" /></a>
+                            <a href="@information.Twiter"><img src="~/images/twitter.png" /></a>
+                            <a href="@information.Instgram"><img src="~/images/instagram.png" /></a>
+                            <a href="@information.Tiktok"><img src="~/images/tiktok.png" class="tiktok-bg" /></a>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
         <div class="copyright-area">
             <div class="container">
                 <div class="row">
-                    <div class="col-xl-6 col-lg-6 text-center text-lg-left">
+                    <div class="col-xl-12 col-lg-6 text-center text-lg-left">
                         <div class="copyright-text">
                             <p>Copyright &copy; 2023, All Right Reserved </p>
                         </div>
                     </div>
-                    <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
-                        <div class="footer-menu">
-                            <ul>
-                                <li><a href="#"><i class="fas fa-home mx-1"></i>Home</a></li>
-                                <li><a href="#">Who we are</a></li>
-                                <li><a href="#">Our Services</a></li>
-                                <li><a href="#">Our Partners</a></li>
-                                <li><a href="#">Contact Us</a></li>
-                            </ul>
-                        </div>
-                    </div>
+          
                 </div>
             </div>
         </div>
@@ -464,6 +503,8 @@
 </div>
 <!-- /#modal_2 -->
 <div class="modal-window__backdrop hidden" id="modal-backdrop"></div>
+
+
 
 
 

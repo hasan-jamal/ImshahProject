@@ -50,13 +50,11 @@ namespace ImshahProject.Web.Controllers
             if (ModelState.IsValid)
             {
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
-                if (file != null && file2 != null)
+                if (file != null)
                 {
                     string fileName = Guid.NewGuid().ToString();
-                    string fileName2 = Guid.NewGuid().ToString();
                     var uploads = Path.Combine(wwwRootPath, @"Components\Images\Abouts");
                     var extension = Path.GetExtension(file.FileName);
-                    var extension2 = Path.GetExtension(file2.FileName);
                     if (aboutVM.About.ImageUrl != null)
                     {
                         var oldImagePath = Path.Combine(wwwRootPath, aboutVM.About.ImageUrl.TrimStart('\\'));
@@ -69,13 +67,27 @@ namespace ImshahProject.Web.Controllers
                     {
                         file.CopyTo(fileStream);
                     }
+
+                    aboutVM.About.ImageUrl = fileName + extension;
+                }
+                if (file2 != null)
+                {
+                    string fileName2 = Guid.NewGuid().ToString();
+                    var uploads = Path.Combine(wwwRootPath, @"Components\Images\Abouts");
+                    var extension2 = Path.GetExtension(file2.FileName);
+                    if (aboutVM.About.ImageUrl2 != null)
+                    {
+                        var oldImagePath = Path.Combine(wwwRootPath, aboutVM.About.ImageUrl.TrimStart('\\'));
+                        if (System.IO.File.Exists(oldImagePath))
+                        {
+                            System.IO.File.Delete(oldImagePath);
+                        }
+                    }
                     using (var fileStream = new FileStream(Path.Combine(uploads, fileName2 + extension2), FileMode.Create))
                     {
                         file2.CopyTo(fileStream);
                     }
-                    aboutVM.About.ImageUrl = @"\Components\Images\Abouts\" + fileName + extension;
-                    aboutVM.About.ImageUrl2 = @"\Components\Images\Abouts\" + fileName2 + extension2;
-
+                    aboutVM.About.ImageUrl2 = fileName2 + extension2;
                 }
                 if (aboutVM.About.Id == 0)
                 {
