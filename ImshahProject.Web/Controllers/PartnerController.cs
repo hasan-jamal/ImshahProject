@@ -128,7 +128,7 @@ namespace ImshahProject.Web.Controllers
             return Json(new { data = allPartners });
         }
 
-        [HttpDelete]
+        [HttpDelete("/DeleteItem/{id}")]
         public IActionResult DeleteItem(int? id)
         {
             var partner = _unitOfWork.partners.GetFirstOrDeafult(u => u.Id == id);

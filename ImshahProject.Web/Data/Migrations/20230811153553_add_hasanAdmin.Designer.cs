@@ -4,6 +4,7 @@ using ImshahProject.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ImshahProject.Web.Data.Migrations
 {
     [DbContext(typeof(ImshahProjectContext))]
-    partial class ImshahProjectContextModelSnapshot : ModelSnapshot
+    [Migration("20230811153553_add_hasanAdmin")]
+    partial class add_hasanAdmin
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -143,19 +145,19 @@ namespace ImshahProject.Web.Data.Migrations
                         {
                             Id = "a18be9c0-aa65-4af8-bd17-00bd9344e575",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "72feed20-6917-4951-b42d-f24049d969ee",
-                            Email = "admin@imashah.com",
+                            ConcurrencyStamp = "a10a8fb5-b8c6-4885-9b1f-3ac786b7e8bc",
+                            Email = "hasanjamal@imashah.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            Name = "Admin",
-                            NormalizedEmail = "admin@imashah.com",
-                            NormalizedUserName = "adminNew",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGR0G8z6hPW7OFWcA4e9uej5Xcf93OWmn5ATM8DadR4QcX5FjpFkUFh/nsGHajej3A==",
+                            Name = "Hasan",
+                            NormalizedEmail = "hasanjamal@imashah.com",
+                            NormalizedUserName = "hasanJamal",
+                            PasswordHash = "AQAAAAEAACcQAAAAECv8RnU6gMuieXjISkPx0ml5HJxxq3cwvkkHZmnEkXoyNTEaVMY2Pu15YKPm3lC/bQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
-                            UserName = "adminNew"
+                            UserName = "hasanJamal"
                         });
                 });
 
@@ -407,14 +409,14 @@ namespace ImshahProject.Web.Data.Migrations
                         new
                         {
                             Id = "c3a2cde1-caac-4a6c-a24f-1b5d35b47f59",
-                            ConcurrencyStamp = "5f15af0d-ff9f-4001-82b4-aeabfbe28338",
+                            ConcurrencyStamp = "9de0a466-8ee7-4df3-b5c1-6a9dff4087b6",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "a5761da7-a17f-48fa-bcd3-aa25d7b75d15",
-                            ConcurrencyStamp = "2c319383-7b27-4e33-b189-18f5670254e8",
+                            ConcurrencyStamp = "53810a7f-a983-431a-a7bf-3aad19c7fb76",
                             Name = "Customer ",
                             NormalizedName = "CUSTOMER"
                         });

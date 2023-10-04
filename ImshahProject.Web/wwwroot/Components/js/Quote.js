@@ -19,7 +19,7 @@ function LoadDataTable() {
                 "data": "id",
                 "render": function (data) {
                     return `
-                <a class="btn-danger btn" onClick="Delete('./Quotes/DeleteItem/${data}')" ><i class="bi bi-trash3"></i></a>
+                <a class="btn-danger btn" href="./Quotes/Delete?id=${data}" ><i class="bi bi-trash3"></i></a>
                            `
                 },
                 "width": " 5%"

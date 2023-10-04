@@ -1,49 +1,122 @@
-﻿
-
+﻿@model List<ContactsVM>
 @{
-        Layout = "~/Views/Shared/_dashboard.cshtml";
+    Layout = "~/Views/Shared/_dashboard.cshtml";
 }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" />
+<style>
+    table tr input[type=checkbox] {
+        width: 20px;
+    }
+    .scrollbar {
+        overflow-x: scroll;
+        cursor: pointer;
+    }
 
+    .scrollbar::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color: #F5F5F5;
+    }
 
+    .scrollbar::-webkit-scrollbar {
+        height: 10px;
+        background-color: #F5F5F5;
+    }
+
+    .scrollbar::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: #142F43;
+    }
+</style>
 <div class="container p-3">
-       <div class="row pt-4">
+    <div class="row pt-4">
         <div class="col-12">
             <h1 class="h1-header mt-5"> Table Contacts</h1>
         </div>
-      
+
     </div>
 </div>
+<div >
+    <form asp-action="DeleteContacts" asp-controller="Contacts" method="post" >
+        <input type="submit" value="Delete All" class="btn btn-danger mb-2">
+        <table id="tblData" class="table table-hover table-bordered table-contact">
+            <thead>
+                <tr>
+                    <th>
+                        <input type="checkbox" name="master" id="master" style="width:15px;" />
+                    </th>
+                    <th>
+                        Full Name
+                    </th>
+                    <th>
+                        Email Address
+                    </th>
+                    <th>
+                        Subject
+                    </th>
+                    <th>
+                        Message
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+            <tbody d="jar">
+                @for (var i = 0; i < Model.Count(); i++)
+                {
+                    <tr data-row-id="@Model[i]" class="content">
+                        <td>
+                            <input type="hidden" asp-for="@Model[i].Con!.Value">
+                            <input asp-for="@Model[i].Con!.Selected" class="sub_chk" data-id="@Model[i]" style="width:15px;">
+                            <input type="hidden" asp-for="@Model[i].Id">
+                        </td>
+                        <td>
+                            <input type="hidden" asp-for="@Model[i].FirstName">
+                            <label asp-for="@Model[i].FirstName">@Model[i].FirstName</label>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model[i].Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model[i].Subject)
+                        </td>
+                        <td >
+                            @Html.DisplayFor(modelItem => Model[i].Message)
+                        </td>
+                        <td>
+                            <a class="btn-danger btn" href="./Contacts/Delete?id=@Model[i].Id"><i class="bi bi-trash3"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
 
-<table id="tblData" class="table table-hover table-bordered ">
+    </form>
+</div>
 
-    <thead>
-        <tr>
-            <th>
-                First Name
-            </th>
-            <th>
-                Last Name
-            </th>
-             <th>
-                Email Address
-            </th>
-              <th>
-                Subject
-            </th>
-             <th>
-                Message
-            </th>
-            <th>
-                Actions
-            </th>
-        </tr>
-    </thead>
-
-</table>
-
- 
+<nav class="d-block m-auto pt-3">
+    <ul class="pagination justify-content-center pagination-sm">
+    </ul>
+</nav>
 @section Scripts{
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script src="~/Components/js/Contact.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        jQuery('#master').on('click', function (e) {
+            if ($(this).is(':checked', true)) {
+                $(".sub_chk").prop('checked', true);
+            }
+            else {
+                $(".sub_chk").prop('checked', false);
+            }
+        });
+    </script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#tblData').DataTable();
+        } );
+    </script>
 }

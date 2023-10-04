@@ -24,7 +24,7 @@ function LoadDataTable() {
                 "render": function (data) {
                     return `
                 <a class="btn-primary btn" href="./Service/Upsert?id=${data}"><i class="bi bi-pencil-square"></i></a>
-                <a class="btn-danger btn" onClick="Delete('./Service/DeleteItem/${data}')" ><i class="bi bi-trash3"></i></a>
+                <a class="btn-danger btn" href="./Service/Delete?id=${data}" ><i class="bi bi-trash3"></i></a>
                            `
                 },
                 "width": " 5%"

@@ -51,7 +51,7 @@ namespace ImshahProject.Web.Data
             builder.Entity<ApplicationUser>().HasData(new ApplicationUser
             {
                 Id = ADMIN_ID,
-                Name= "Admin",
+                Name = "Admin",
                 UserName = "adminNew",
                 NormalizedUserName = "adminNew",
                 Email = "admin@imashah.com",
@@ -60,36 +60,48 @@ namespace ImshahProject.Web.Data
                 PasswordHash = hasher.HashPassword(null, "Admin@123#"),
                 SecurityStamp = string.Empty
             });
+            //builder.Entity<ApplicationUser>().HasData(new ApplicationUser
+            //{
+            //    Id = ADMIN_ID,
+            //    Name = "Hasan",
+            //    UserName = "hasanJamal",
+            //    NormalizedUserName = "hasanJamal",
+            //    Email = "hasanjamal@imashah.com",
+            //    NormalizedEmail = "hasanjamal@imashah.com",
+            //    EmailConfirmed = true,
+            //    PasswordHash = hasher.HashPassword(null, "Hasanjamal@123#"),
+            //    SecurityStamp = string.Empty
+            //});
             builder.Entity<IdentityUserRole<string>>().HasData(
                 new IdentityUserRole<string>
             {
                 RoleId = ROLE_ID,
                 UserId = ADMIN_ID
             });
-            builder.Entity<Information>().HasData(new Information
-            {
-                Id= 1,
-                GetAquote = "Get Aquote",
-                GetAquote_ar = "اضف التسعيرة",
-            });
-            builder.Entity<About>().HasData(new About
-            {
-                Id = 1,
-                Text1 = "نص بديل ",
-                Text2 = "نص بديل ",
-                Text_ar1 = "نص بديل ",
-                Text3 = "نص بديل ",
-                Text_ar2 = "نص بديل ",
-                Text_ar3 = "نص بديل ",
-            });
-            builder.Entity<Goal>().HasData(new Goal
-            {
-                Id = 1,
-                Name = "نص بديل ",
-                Name_ar= "نص بديل ",
-                Text = "نص بديل ",
-                Text_ar = "نص بديل ",
-            });
+            //builder.Entity<Information>().HasData(new Information
+            //{
+            //    Id= 1,
+            //    GetAquote = "Get Aquote",
+            //    GetAquote_ar = "اضف التسعيرة",
+            //});
+            //builder.Entity<About>().HasData(new About
+            //{
+            //    Id = 1,
+            //    Text1 = "نص بديل ",
+            //    Text2 = "نص بديل ",
+            //    Text_ar1 = "نص بديل ",
+            //    Text3 = "نص بديل ",
+            //    Text_ar2 = "نص بديل ",
+            //    Text_ar3 = "نص بديل ",
+            //});
+            //builder.Entity<Goal>().HasData(new Goal
+            //{
+            //    Id = 1,
+            //    Name = "نص بديل ",
+            //    Name_ar= "نص بديل ",
+            //    Text = "نص بديل ",
+            //    Text_ar = "نص بديل ",
+            //});
 
         }
 

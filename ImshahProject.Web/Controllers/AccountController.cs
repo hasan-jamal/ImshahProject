@@ -127,12 +127,13 @@ namespace ImshahProject.Web.Controllers
         }
         [HttpGet]
         [Authorize(Roles = SD.Role_Admin)]
+        [AllowAnonymous]
         public IActionResult Register() => View(new RegisterVM());
 
         //POST: Acount/Register
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [Authorize(Roles = SD.Role_Admin)]
+        [AllowAnonymous]
         public async Task<IActionResult> Register(RegisterVM registerVM)
         {
             if (!ModelState.IsValid) return View(registerVM);
@@ -141,7 +142,7 @@ namespace ImshahProject.Web.Controllers
             if (user != null) { TempData["Error"] = "The Email Address Already Exist"; return View(registerVM); }
             var newuser = new ApplicationUser()
             {
-                Name = registerVM.FullName,
+                Name = registerVM.Name,
                 Email = registerVM.EmailAddress,
                 UserName = registerVM.EmailAddress,
             };
@@ -183,7 +184,7 @@ namespace ImshahProject.Web.Controllers
             var rseultRole = await _userManager.AddToRoleAsync(newuser, SD.Role_Customer);
             if (!rseultRole.Succeeded)
                 return View(registerVM);
-            return RedirectToAction("Index", "Slider");
+            return RedirectToAction("Users", "Account");
         }
 
 
@@ -192,6 +193,47 @@ namespace ImshahProject.Web.Controllers
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+        [HttpGet]
+        public async Task<IActionResult> Delete(string id)
+        {
+            if (id == "0" && id == null)
+            {
+                return NotFound();
+            }
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return View(user);
+        }
+        [HttpPost]
+        public async Task<IActionResult> DeleteUser(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+
+            if (user == null)
+            {
+                ViewBag.ErrorMessage = $"User with Id = {id} cannot be found";
+                return View("NotFound");
+            }
+            else
+            {
+                var result = await _userManager.DeleteAsync(user);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Users");
+                }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+
+                return View("Users");
+            }
         }
     }
 }

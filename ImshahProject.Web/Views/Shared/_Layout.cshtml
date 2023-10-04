@@ -27,12 +27,20 @@
         rel="stylesheet">
     <!--Toastr  CSS---->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <script>
+        function fakecounter() {
+            //decrease/increase counter value (depending on perceived popularity of your site!)
+            var decrease_increase = 50000
+
+            var counterdate = new Date()
+            var currenthits = counterdate.getTime().toString()
+            currenthits = parseInt(currenthits.substring(2, currenthits.length - 4)) + decrease_increase;
+            document.write(currenthits);
+        }
+    </script>
 </head>
 <body id="home">
- 
-   
-
-          <partial name="~/Views/Shared/_Notification.cshtml" />
+    <partial name="~/Views/Shared/_Notification.cshtml" />
           @RenderBody()
     
 
@@ -59,41 +67,56 @@
      <!--Toastr  JS---->
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script>
-(function() {
-  "use strict";
+     
+        (function() {
+          "use strict";
 
-  const backdrop = document.querySelector('#modal-backdrop');
-  document.addEventListener('click', modalHandler);
+          const backdrop = document.querySelector('#modal-backdrop');
+          document.addEventListener('click', modalHandler);
 
-  function modalHandler(evt) {
-    const modalBtnOpen = evt.target.closest('.js-modal');
-    if (modalBtnOpen) { // open btn click
-      const modalSelector = modalBtnOpen.dataset.modal;
-      showModal(document.querySelector(modalSelector));
-    }
+          function modalHandler(evt) {
+            const modalBtnOpen = evt.target.closest('.js-modal');
+            if (modalBtnOpen) { // open btn click
+              const modalSelector = modalBtnOpen.dataset.modal;
+              showModal(document.querySelector(modalSelector));
+            }
 
-    const modalBtnClose = evt.target.closest('.modal-close');
-    if (modalBtnClose) { // close btn click
-      evt.preventDefault();
-      hideModal(modalBtnClose.closest('.modal-window'));
-    }
+            const modalBtnClose = evt.target.closest('.modal-close');
+            if (modalBtnClose) { // close btn click
+              evt.preventDefault();
+              hideModal(modalBtnClose.closest('.modal-window'));
+            }
 
-    if (evt.target.matches('#modal-backdrop')) { // backdrop click
-      hideModal(document.querySelector('.modal-window.show'));
-    }
-  }
+            if (evt.target.matches('#modal-backdrop')) { // backdrop click
+              hideModal(document.querySelector('.modal-window.show'));
+            }
+          }
 
-  function showModal(modalElem) {
-    modalElem.classList.add('show');
-    backdrop.classList.remove('hidden');
-  }
+          function showModal(modalElem) {
+            modalElem.classList.add('show');
+            backdrop.classList.remove('hidden');
+          }
 
-  function hideModal(modalElem) {
-    modalElem.classList.remove('show');
-    backdrop.classList.add('hidden');
-  }
-})();
+          function hideModal(modalElem) {
+            modalElem.classList.remove('show');
+            backdrop.classList.add('hidden');
+          }
+        })();
         </script>
     @await RenderSectionAsync("Scripts", required: false)
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+        $(document).ready(function () {
+            $('form').submit(function (event) {
+                var response = grecaptcha.getResponse();
+
+                if (response.length === 0) {
+                    event.preventDefault(); // Prevent form submission
+                    alert('Please complete the reCAPTCHA.');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

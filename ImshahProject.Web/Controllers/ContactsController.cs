@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using ImshahProject.Web.Data;
 using ImshahProject.Web.DataAccess.IRepository;
 using ImshahProject.Web.Models;
 using ImshahProject.Web.Utlity;
+using ImshahProject.Web.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -15,16 +17,16 @@ namespace ImshahProject.Web.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public ContactsController(IUnitOfWork unitOfWork,IMapper mapper)
+        private readonly ImshahProjectContext _db;
+        public ContactsController(IUnitOfWork unitOfWork,IMapper mapper, ImshahProjectContext db)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _db = db;
         }
-        public IActionResult Index()
-        {
-            IEnumerable<Contact> objectcontactsList = _unitOfWork.contacts.GetAll();
-            return View(objectcontactsList);
-        }
+        public IActionResult Index() => 
+              View(_mapper.Map<List<ContactsVM>>(_unitOfWork.contacts.GetAll()));
+        
         [AllowAnonymous]
         public IActionResult Create()
         {
@@ -63,7 +65,6 @@ namespace ImshahProject.Web.Controllers
 
         }
     
-
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -71,7 +72,7 @@ namespace ImshahProject.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                Send( contact.Email,contact.FullName,contact.Subject,contact.Message);
+                Send( contact.Email,contact.FullName,contact!.Subject,contact.Message);
                 _unitOfWork.contacts.Add(contact);
                 _unitOfWork.Save();
                 TempData["success"] = "Add Information Contact is successfully";
@@ -80,7 +81,6 @@ namespace ImshahProject.Web.Controllers
             TempData["error"] = "Add Information Contact is Failed !!";
             return View();
         }
-
 
         [HttpGet]
         public IActionResult Delete(int? id)
@@ -96,6 +96,7 @@ namespace ImshahProject.Web.Controllers
             }
             return View(contactsId);
         }
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeletePost(int? id)
@@ -108,6 +109,22 @@ namespace ImshahProject.Web.Controllers
             _unitOfWork.contacts.Remove(contacts);
             _unitOfWork.Save();
             TempData["success"] = "Delete contact is successfully";
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public IActionResult DeleteContacts(List<ContactsVM> con)
+        {
+            List<Contact> contacts = new List<Contact>();
+            foreach (var item in con)
+            {
+                if (item.Con!.Selected)
+                {
+                    var selectedContacts = _db.Contacts.Find(item.Id);
+                    contacts.Add(selectedContacts!);
+                }
+            }
+            _db.Contacts.RemoveRange(contacts);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
 

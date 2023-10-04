@@ -1,0 +1,31 @@
+﻿@model ApplicationUser
+
+@{
+    Layout = "~/Views/Shared/_dashboard.cshtml";
+}
+<div class="container p-3">
+    <h1 class="h1-header mt-5">Delete User</h1>
+    <form method="post" asp-action="DeleteUser" >
+        <label hidden class="form-label" asp-for="Id"></label>
+        <input hidden class="form-control" asp-for="Id" />
+        <div class="border p-3 mt-4">
+            <div class="row pb-2">
+
+                <hr />
+            </div>
+            <div asp-validation-summary="All"></div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" disabled class="form-control" />
+                    </div>
+                </div>
+
+            </div>
+
+            <button type="submit" class="btn-danger btn" style="width:150px">Delete</button>
+            <a class="btn btn-secondary"  asp-controller="Account" asp-action="Users">Back To List</a>
+        </div>
+    </form>
+</div>

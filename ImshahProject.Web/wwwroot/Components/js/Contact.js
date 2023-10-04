@@ -10,6 +10,7 @@ function LoadDataTable() {
             "url": "/Contacts/GetAll"
         },
         "columns": [
+            { "data": "", "width":"5%"},
             { "data": "firstName", "width": "5%" },
             { "data": "lastName", "width": "5%" },
             { "data": "email", "width": "5%" },
@@ -19,7 +20,7 @@ function LoadDataTable() {
                 "data": "id",
                 "render": function (data) {
                     return `
-                <a class="btn-danger btn" onClick="Delete('./Contacts/DeleteItem/${data}')" ><i class="bi bi-trash3"></i></a>
+                <a class="btn-danger btn" href="./Contacts/Delete?id=${data}" ><i class="bi bi-trash3"></i></a>
                            `
                 },
                 "width": " 5%"

@@ -6,7 +6,7 @@ namespace ImshahProject.Web.ViewModels
     {
         [Display(Name = "Full name")]
         [Required(ErrorMessage = "FullName is required")]
-        public string FullName { get; set; } = null!;
+        public string Name { get; set; } = null!;
 
         [Display(Name = "Email Address")]
         [Required(ErrorMessage = "EmailAddress is required")]

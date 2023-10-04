@@ -4,6 +4,6 @@ namespace ImshahProject.Web.ViewModels
 {
     public class SliderVM
     {
-        public Slider Slider { get; set; }
+        public Slider? Slider { get; set; }
     }
 }

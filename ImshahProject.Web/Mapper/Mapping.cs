@@ -19,6 +19,7 @@ namespace ImshahProject.Web.Mapper
 
             #region Contact
             CreateMap<ContactsVM, Contact>().ReverseMap();
+            CreateMap<QuoteVM, Quote>().ReverseMap();
             #endregion
 
 

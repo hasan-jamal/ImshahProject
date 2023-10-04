@@ -1,7 +1,10 @@
 ﻿using AutoMapper;
+using ImshahProject.Web.Data;
+using ImshahProject.Web.DataAccess;
 using ImshahProject.Web.DataAccess.IRepository;
 using ImshahProject.Web.Models;
 using ImshahProject.Web.Utlity;
+using ImshahProject.Web.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -15,16 +18,17 @@ namespace ImshahProject.Web.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public QuotesController(IUnitOfWork unitOfWork,IMapper mapper)
+        private readonly ImshahProjectContext _db;
+
+        public QuotesController(IUnitOfWork unitOfWork,IMapper mapper, ImshahProjectContext db)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _db = db;
         }
-        public IActionResult Index()
-        {
-            IEnumerable<Quote> objectQuotesList = _unitOfWork.quotes.GetAll();
-            return View(objectQuotesList);
-        }
+        public IActionResult Index()=>
+            View(_mapper.Map<List<QuoteVM>>(_unitOfWork.quotes.GetAll()));
+
         [AllowAnonymous]
         public IActionResult Create()
         {
@@ -70,6 +74,7 @@ namespace ImshahProject.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 Send(quote.Email, quote.CompanyName, quote.FullName, quote.Subject, quote.Message);
                 _unitOfWork.quotes.Add(quote);
                 _unitOfWork.Save();
@@ -110,6 +115,23 @@ namespace ImshahProject.Web.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        public IActionResult DeleteQuotes(List<QuoteVM> con)
+        {
+            List<Quote> quotes = new List<Quote>();
+
+            foreach (var item in con)
+            {
+                if (item.Con!.Selected)
+                {
+                    var selectedContacts = _db.Quotes.Find(item.Id!);
+                    quotes.Add(selectedContacts!);
+                }
+            }
+            _db.Quotes.RemoveRange(quotes);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
         #region API CALLS
         [HttpGet]
         public IActionResult GetAll()

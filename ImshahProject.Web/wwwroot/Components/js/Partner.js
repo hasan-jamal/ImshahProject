@@ -23,7 +23,7 @@ function LoadDataTable() {
                 "render": function (data) {
                     return `
                 <a class="btn-primary btn" href="./Partner/Upsert?id=${data}"><i class="bi bi-pencil-square"></i></a>
-                <a class="btn-danger btn" onClick="Delete('./Partner/DeleteItem/${data}')" ><i class="bi bi-trash3"></i></a>
+                <a class="btn-danger btn" href="./Partner/Delete?id=${data}" ><i class="bi bi-trash3"></i></a>
                            `
                 },
                 "width": "15%"
@@ -33,6 +33,7 @@ function LoadDataTable() {
 }
 
 function Delete(url) {
+    console.log(url);
     Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -45,7 +46,7 @@ function Delete(url) {
         if (result.isConfirmed) {
             $.ajax({
                 url: url,
-                type: 'DELETE',
+                type: 'Delete',
                 success: function (data) {
                     if (data.success) {
                         dataTable.ajax.reload();
